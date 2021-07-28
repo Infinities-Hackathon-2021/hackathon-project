@@ -10,6 +10,8 @@ if(isset($reg))
 	if(mysqli_num_rows($que))
 	{
 	$m= "<p style='color:red'>This user already exists</p>";
+    $log_file = "./add.log";
+    error_log($m, 3, $log_file);
 	}
 	else
 	{
@@ -21,10 +23,14 @@ if(isset($reg))
 		if(mysqli_query($con,$query))
 		{
 		$m= "Data saved successfully";
+        $log_file = "./add.log";
+        error_log($m, 3, $log_file);
 		}
 		else
 		{
 		$m= "some error";
+        $log_file = "./add.log";
+        error_log($m, 3, $log_file);
 		}
 	}
 	}

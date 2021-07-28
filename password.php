@@ -89,14 +89,26 @@ include("connection.php");
 							$update = mysqli_query($con, "UPDATE employee SET emp_password='$password1' WHERE emp_id='$s'");
 							if($update){
 								echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Password successfully change.</div>';
+								$message = "password successfully changed";
+    							$log_file = "./password.log";
+    							error_log($message, 3, $log_file);
 							}else{
 								echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>The password failed to change.</div>';
+								$message = "password failed to changed";
+    							$log_file = "./password.log";
+    							error_log($message, 3, $log_file);
 							}
 						}else{
 							echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Long character Password at least 6 characters.</div>';
+							$message = "Long character Password at least 6 characters";
+    						$log_file = "./password.log";
+    						error_log($message, 3, $log_file);
 						}
 					}else{
 						echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Pasword is not the same.</div>';
+						$message = "Password is not the same";
+    					$log_file = "./password.log";
+    					error_log($message, 3, $log_file);
 					}
 				}
 			}

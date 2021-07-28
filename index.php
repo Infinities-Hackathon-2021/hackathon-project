@@ -54,12 +54,21 @@ error_reporting(1);
 				$sql = mysqli_query($con, "SELECT * FROM employee WHERE emp_id='$del'");
 				if(mysqli_num_rows($sql) == 0){
 					echo '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> Data not found.</div>';
+					$error = "Data not found";
+    				$log_file = "./index.log";
+    				error_log($error, 3, $log_file);
 				}else{
 					$delete = mysqli_query($con, "DELETE FROM employee WHERE emp_id='$del'");
 					if($delete){
 						echo '<div class="alert alert-primary alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Data successfully deleted.</div>';
+						$message = "Data successfully deleted";
+    					$log_file = "./index.log";
+    					error_log($message, 3, $log_file);
 					}else{
 						echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> Data failed deleted.</div>';
+						$error = "Data failed deleted";
+    					$log_file = "./index.log";
+    					error_log($error, 3, $log_file);
 					}
 				}
 			}
@@ -98,6 +107,9 @@ error_reporting(1);
 				}
 				if(mysqli_num_rows($sql) == 0){
 					echo '<tr><td colspan="8">Data not found.</td></tr>';
+					$error = "Data not found";
+    				$log_file = "./index.log";
+    				error_log($error, 3, $log_file);
 				}else{
 					$no = 1;
 					while($row = mysqli_fetch_assoc($sql)){

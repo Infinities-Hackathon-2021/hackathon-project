@@ -64,8 +64,14 @@ include("connection.php");
 				$delete = mysqli_query($con, "DELETE FROM employee WHERE emp_id='$s'");
 				if($delete){
 					echo '<div class="alert alert-danger alert-dismissable">><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Data successfully deleted.</div>';
+					$message = "Data successfully deleted";
+    				$log_file = "./profile.log";
+    				error_log($message, 3, $log_file);
 				}else{
 					echo '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Data failed deleted.</div>';
+					$message = "Data failed to delete";
+    				$log_file = "./profile.log";
+    				error_log($message, 3, $log_file);
 				}
 			}
 			?>
